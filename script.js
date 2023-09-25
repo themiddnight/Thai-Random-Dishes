@@ -31,7 +31,8 @@ function getMenu() {
         `ข้าว${top}${meat}${veg}`,
         `${veg}${meat}น้ำมันหอย`,
         `${meat}ผัดเผ็ด${top}`,
-        `${meat}ผัดพริกแกง${top}`
+        `${meat}ผัดพริกแกง${top}`,
+        `${meat}ผัดผงกะหรี่${top}`,
     ];
     return menus[Math.floor(Math.random() * menus.length)];
 }
