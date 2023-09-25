@@ -5,10 +5,6 @@
     touch-action: manipulation;
 }
 
-html {
-    height: -webkit-fill-available;
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: orange;
@@ -28,8 +24,7 @@ body {
     justify-content: center;
     max-width: 960px;
     margin: 0 auto;
-    height: 100vh;
-    min-height: -webkit-fill-available;
+    height: 90vh;
 }
 
 .random-container {
