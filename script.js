@@ -1,5 +1,5 @@
 function getMeatIng() {
-    const meatProc = ["", "สับ", "กรอบ", "ทอด", "ต้ม", "ย่าง", "อบ"];
+    const meatProc = ["", "สับ", "กรอบ", "ทอด", "ต้ม", "ย่าง", "ย่างเกลือ", "อบ", "เผา"];
     let proc = meatProc[Math.floor(Math.random() * meatProc.length)];
     const meatIng = [
         "หมู" + proc, "ไก่" + proc, "เนื้อ" + proc,
@@ -8,11 +8,11 @@ function getMeatIng() {
     return meatIng[Math.floor(Math.random() * meatIng.length)];
 }
 function getVegIng() {
-    const vegIng = ["คะน้า", "ผักบุ้ง", "ผักรวม", "แครอท"];
+    const vegIng = ["คะน้า", "ผักบุ้ง", "ผักรวม", "แครอท", "กะหล่ำปลี", "บล็อคโคลี่", "ผักกาด"];
     return vegIng[Math.floor(Math.random() * vegIng.length)];
 }
 function getTopping() {
-    const topping = ["", "ไข่เจียว", "ไข่ดาว", "ไข่ข้น"];
+    const topping = ["", "ไข่เจียว", "ไข่ดาว", "ไข่ข้น", "ไข่ต้ม", "ไข่เค็ม", "ไข่เยี่ยวม้า"];
     return topping[Math.floor(Math.random() * topping.length)];
 }
 function getMenu() {
@@ -35,30 +35,54 @@ function getMenu() {
     return menus[Math.floor(Math.random() * menus.length)];
 }
 
-let getMenuBtn = document.getElementById("getMenuBtn");
-let randCount = 0;
-getMenuBtn.addEventListener("click", () => {
-    for (let i = 0; i < 15; i++) {
-        setTimeout(() => { 
-            // roll amd change title
-            let menuTitle = document.getElementById("title");
-            menuTitle.classList.remove("roll");
-            menuTitle.offsetWidth = menuTitle.offsetWidth;
-            menuTitle.classList.add("roll");
+function setMenuTx() {
+    return new Promise((resolve) => {
+        let count = 0;
+        let interval = 70;
+        let menuTitle = document.getElementById("title");
+        function executeLoop() {
             menuTitle.innerHTML = getMenu();
-        }, 100 * (i * (i / 10)))
-    }
+            count++;
+            if (count >= 15) {
+                resolve();
+            }
+            else {
+                interval *= 1.1;
+                setTimeout(executeLoop, interval);
+            }
+        }
+        executeLoop();
+    });
+}
 
-    // logo bounce
+function popMenuTitleCon() {
+    let menuTitleCon = document.getElementById("title-con");
+    menuTitleCon.classList.remove("pop");
+    menuTitleCon.offsetWidth = menuTitleCon.offsetWidth;
+    menuTitleCon.classList.add("pop");
+}
+
+function bouncLogo() {
     let logo = document.getElementById("logo");
     logo.classList.remove("bounce");
     logo.offsetWidth = logo.offsetWidth;
     logo.classList.add("bounce");
+}
+
+let getMenuBtn = document.getElementById("getMenuBtn");
+let randCount = 0;
+getMenuBtn.addEventListener("click", async () => {
+    await setMenuTx();
+    popMenuTitleCon();
+    bouncLogo();
+    randCount++;
 
     // subtitle show
-    randCount++;
     let subtitle = document.getElementById("subtitle");
-    if (randCount >= 10) {
-        subtitle.innerHTML = `ไม่ถูกใจแล้ว ${randCount} ครั้ง`;
+    if (randCount >= 10 && randCount <= 30) {
+        subtitle.innerHTML = `ไม่ถูกใจ ${randCount} ครั้งแล้ว`;
+    }
+    else if (randCount > 30) {
+        subtitle.innerHTML = `${randCount} รอบแล้ว.. จะได้กินมั้ยนะ?`;
     }
 });

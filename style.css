@@ -115,7 +115,12 @@ body {
 
 .roll {
     animation-name: roll;
-    animation-duration: 0.08s;
+    animation-duration: 0.1s;
+}
+
+.pop {
+    animation-name: pop;
+    animation-duration: 0.2s;
 }
 
 @keyframes bounce {
@@ -173,5 +178,63 @@ body {
         transform: translateY(0px);
         animation-timing-function: linear;
         opacity: 1;
+    }
+}
+
+@keyframes pop {
+    0% {
+        scale: 1;
+    }
+    40% {
+        scale: 1.1;
+        animation-timing-function: ease-in-out;
+    }
+    90% {
+        scale: 0.95;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+/* responsive */
+@media screen and (max-width: 330px) {
+    .main-container {
+        max-width: 300px;
+    }
+    .logo-con h1 {
+        transform: translate(-50%, 0px);
+    }
+    .title-con {
+        width: 250px;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .main-container {
+        max-width: 1280px;
+    }
+    .logo-con h1 {
+        font-size: 130pt;
+    }
+    .oval {
+        height: 70px;
+        width: 150px;
+        transform: translate(-50%, 50px);
+    }
+    .title-con {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .main-container {
+        max-width: 1280px;
+    }
+    .oval {
+        transform: translate(-50%, 50px);
+    }
+    .title-con {
+        width: 800px;
     }
 }
