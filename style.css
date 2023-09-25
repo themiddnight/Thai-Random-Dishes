@@ -1,35 +1,43 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-color: orange;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: orange;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-container {
-	/*border: 1px solid;*/
-	display: grid;
-	grid-template-columns: auto;
-	grid-gap: 30px;
-	justify-content: center;
-	max-width: 960px;
-	margin: 0 auto;
+    /* border: 1px solid; */
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 30px;
+    justify-content: center;
+    max-width: 960px;
+    margin: 0 auto;
+    height: 100vh;
 }
 
 .random-container {
-	/*border: 1px solid;*/
-	padding: 30px;
-	text-align: center;
+    /* border: 1px solid; */
+    display: grid;
+    grid-template-rows: 5% 30% 25% 10% 10% 10% 15%;
+    grid-template-columns: auto;
+    padding: 30px;
+    text-align: center;
+    height: 100vh;
 }
 
 .logo-con {
-	/*border: 1px solid;*/
-	padding-block: 50px;
-	width: 300px;
-    position: relative;
+    grid-row: 2;
 }
 
 .oval {
@@ -39,55 +47,44 @@ body {
     border-radius: 50%;
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 100px);
+    transform: translate(-50%, 35px);
     filter: blur(15px);
-    z-index: 1;
 }
 
 .logo-con h1 {
-	/* border: 1px solid; */
-	font-size: 100pt;
+    /* border: 1px solid; */
+    font-size: 100pt;
     position: absolute;
     left: 50%;
-    top: 50px;
     transform: translate(-50%, 0px);
-    z-index: 2;
 }
 
 .title-con {
-	/* border: 1px solid; */
-	background-color: #ffffff88;
-	width: 300px;
-	height: 140px;
-	border-radius: 20px;
-    margin-top: 170px;
-	position: relative;
+    grid-row: 3;
+    /* border: 1px solid; */
+    background-color: #ffffff88;
+    width: 300px;
+    height: 140px;
+    border-radius: 20px;
 }
 
 .title-con h1 {
-	/* border: 1px solid; */
-	display: block;
-	width: 90%;
+    width: 90%;
     font-size: 22pt;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 }
 
 .btn-con {
-	margin-top: 150px;
-	margin-bottom: 50px;
+    grid-row: 5;
 }
 
 .btn-con button {
-	width: 120px;
-	height: 50px;
-	border: 0;
-	border-radius: 25px;
-	font-size: large;
-	background-color: black;
-	color: white;
+    width: 120px;
+    height: 50px;
+    border: 0;
+    border-radius: 25px;
+    font-size: large;
+    background-color: black;
+    color: white;
     transition: 0.2s;
 }
 
@@ -97,10 +94,14 @@ body {
 
 .btn-con button:active {
     scale: 0.95;
-	color: #aaa;
+    color: #aaa;
+}
+
+.subtitle-con {
+    grid-row: 6;
+    /* border: 1px solid; */
 }
 
 .shadow {
-	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
