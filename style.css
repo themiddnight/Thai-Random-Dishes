@@ -50,7 +50,7 @@ body {
     left: 50%;
     transform: translate(-50%, 35px);
     filter: blur(15px);
-    z-index: 3;
+    /* z-index: 3; */
 }
 
 .logo-con h1 {
@@ -59,7 +59,7 @@ body {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0px);
-    z-index: 4;
+    /* z-index: 4; */
 }
 
 .title-con {
@@ -70,7 +70,7 @@ body {
     height: 140px;
     border-radius: 20px;
     overflow: hidden;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .title-con h1 {
@@ -91,7 +91,7 @@ body {
     background-color: black;
     color: white;
     transition: 0.2s;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .btn-con button:hover {
