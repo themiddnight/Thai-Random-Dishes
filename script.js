@@ -2,8 +2,8 @@ function getMeatIng() {
     const meatProc = ["", "สับ", "กรอบ", "ทอด", "ต้ม", "ย่าง", "อบ"];
     let proc = meatProc[Math.floor(Math.random() * meatProc.length)];
     const meatIng = [
-        "หมู" + proc, "ไก่" + proc, "เนื้อ" + proc, "ปลา" + proc,
-        "ทะเล", "กุ้ง", "ปลาหมึก", "ปู", "ปูอัด", "ใส้กรอก", "ไข่เยี่ยวม้า"
+        "หมู" + proc, "ไก่" + proc, "เนื้อ" + proc,
+        "ปลา", "ทะเล", "กุ้ง", "ปลาหมึก", "ปู", "ปูอัด", "ใส้กรอก", "ไข่เยี่ยวม้า"
     ];
     return meatIng[Math.floor(Math.random() * meatIng.length)];
 }
@@ -27,7 +27,8 @@ function getMenu() {
         `${meat}คั่วพริกเกลือ${top}`,
         `กระเพรา${meat}${top}`,
         `ข้าว${top}${meat}`,
-        `${veg}${meat}`,
+        `ข้าว${top}${meat}${veg}`,
+        `${veg}${meat}น้ำมันหอย`,
         `${meat}ผัดเผ็ด${top}`,
         `${meat}ผัดพริกแกง${top}`
     ];
@@ -35,12 +36,28 @@ function getMenu() {
 }
 
 let getMenuBtn = document.getElementById("getMenuBtn");
-let menuTitle = document.getElementById("title");
-let subtitle = document.getElementById("subtitle");
 let randCount = 0;
-getMenuBtn.addEventListener("click", function () {
-    menuTitle.innerHTML = getMenu();
+getMenuBtn.addEventListener("click", () => {
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => { 
+            // roll amd change title
+            let menuTitle = document.getElementById("title");
+            menuTitle.classList.remove("roll");
+            menuTitle.offsetWidth = menuTitle.offsetWidth;
+            menuTitle.classList.add("roll");
+            menuTitle.innerHTML = getMenu();
+        }, 100 * (i * (i / 10)))
+    }
+
+    // logo bounce
+    let logo = document.getElementById("logo");
+    logo.classList.remove("bounce");
+    logo.offsetWidth = logo.offsetWidth;
+    logo.classList.add("bounce");
+
+    // subtitle show
     randCount++;
+    let subtitle = document.getElementById("subtitle");
     if (randCount >= 10) {
         subtitle.innerHTML = `ไม่ถูกใจแล้ว ${randCount} ครั้ง`;
     }

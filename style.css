@@ -67,10 +67,11 @@ body {
     width: 300px;
     height: 140px;
     border-radius: 20px;
+    overflow: hidden;
 }
 
 .title-con h1 {
-    width: 90%;
+    width: 85%;
     font-size: 22pt;
 }
 
@@ -105,4 +106,72 @@ body {
 
 .shadow {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bounce {
+    animation-name: bounce;
+    animation-duration: 0.5s;
+}
+
+.roll {
+    animation-name: roll;
+    animation-duration: 0.08s;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translate(-50%, 0px);
+        animation-timing-function: linear;
+    }
+    18% {
+        transform: translate(-50%, -20px);
+        animation-timing-function: ease-in-out;
+    }
+    23% {
+        transform: translate(-50%, -20px);
+        animation-timing-function: ease-in-out;
+    }
+    45% {
+        transform: translate(-50%, 0px);
+        animation-timing-function: linear;
+    }
+    58% {
+        transform: translate(-50%, -8px);
+        animation-timing-function: ease-in-out;
+    }
+    70% {
+        transform: translate(-50%, 0);
+        animation-timing-function: linear;
+    }
+    90% {
+        transform: translate(-50%, -2px);
+        animation-timing-function: ease-in-out;
+    }
+    100% {
+        transform: translate(-50%, 0);
+        animation-timing-function: linear;
+    }
+}
+
+@keyframes roll {
+    0% {
+        transform: translateY(0px);
+        animation-timing-function: linear;
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(60px);
+        animation-timing-function: linear;
+        opacity: 0;
+    }
+    50.1% {
+        transform: translateY(-60px);
+        animation-timing-function: linear;
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        animation-timing-function: linear;
+        opacity: 1;
+    }
 }
