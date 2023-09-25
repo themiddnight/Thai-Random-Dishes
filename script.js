@@ -18,7 +18,8 @@ function getTopping() {
 function getMenu() {
     let meat = getMeatIng();
     let veg = getVegIng();
-    let top = getTopping(); let menus = [
+    let top = getTopping(); 
+    let menus = [
         `ข้าวผัด${meat}${top}`,
         `ข้าวผัด${meat}${veg}${top}`,
         `${meat}ทอดกระเทียม${top}`,
@@ -57,22 +58,19 @@ function setMenuTx() {
 
 function popMenuTitleCon() {
     let menuTitleCon = document.getElementById("title-con");
-    if (menuTitleCon) {
         if (menuTitleCon.classList.contains("pop")) {
             menuTitleCon.classList.remove("pop");
         }
-        menuTitleCon.offsetWidth = menuTitleCon.offsetWidth;
-        menuTitleCon.classList.add("pop");
-    }
+    menuTitleCon.offsetWidth = menuTitleCon.offsetWidth;
+    menuTitleCon.classList.add("pop");
 }
+
 
 function bouncLogo() {
     let logo = document.getElementById("logo");
-    if (logo) {
         if (logo.classList.contains("bounce")) {
             logo.classList.remove("bounce");
         }
-    }
     logo.offsetWidth = logo.offsetWidth;
     logo.classList.add("bounce");
 }
