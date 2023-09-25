@@ -23,17 +23,17 @@ body {
     justify-content: center;
     max-width: 960px;
     margin: 0 auto;
-    height: 100vh;
+    height: 84vh;
 }
 
 .random-container {
     /* border: 1px solid; */
     display: grid;
-    grid-template-rows: 5% 30% 25% 10% 10% 10% 15%;
+    grid-template-rows: 0% 35% 30% 10% 10% 15% 0%;
     grid-template-columns: auto;
     padding: 30px;
     text-align: center;
-    height: 100vh;
+    /* height: 90vh; */
 }
 
 .logo-con {
