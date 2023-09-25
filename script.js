@@ -57,19 +57,22 @@ function setMenuTx() {
 
 function popMenuTitleCon() {
     let menuTitleCon = document.getElementById("title-con");
-    if (menuTitleCon.classList.contains("pop")) {
-        menuTitleCon.classList.remove("pop");
+    if (menuTitleCon) {
+        if (menuTitleCon.classList.contains("pop")) {
+            menuTitleCon.classList.remove("pop");
+        }
+        menuTitleCon.offsetWidth = menuTitleCon.offsetWidth;
+        menuTitleCon.classList.add("pop");
     }
-    menuTitleCon.offsetWidth = menuTitleCon.offsetWidth;
-    menuTitleCon.classList.add("pop");
 }
 
 function bouncLogo() {
     let logo = document.getElementById("logo");
-    if (logo.classList.contains("bounce")) {
-        logo.classList.remove("bounce");
+    if (logo) {
+        if (logo.classList.contains("bounce")) {
+            logo.classList.remove("bounce");
+        }
     }
-    logo.classList.remove("bounce");
     logo.offsetWidth = logo.offsetWidth;
     logo.classList.add("bounce");
 }
