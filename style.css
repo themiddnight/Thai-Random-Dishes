@@ -44,13 +44,15 @@ hr {
 }
 
 .setting-btn-con {
-    margin-left: auto;
+    position: fixed;
+    right: 10%;
     z-index: 2;
 }
 
 .setting-btn-con img {
-    width: 50px;
-    height: 50px;
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
     border: 0;
     border-radius: 25px;
     background-color: #00000000;
@@ -58,6 +60,7 @@ hr {
     font-size: 50px;
     transition: 0.2s;
 }
+/* when tap from iphone */
 
 .setting-btn-con img:active {
     scale: 0.8;
