@@ -10,6 +10,13 @@ body {
     background-color: orange;
 }
 
+hr {
+    border: 0;
+    height: 1px;
+    background: #00000044;
+    margin: 20px 0;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -25,6 +32,8 @@ body {
     max-width: 960px;
     margin: 0 auto;
     height: 90vh;
+    overflow: hidden;
+    /* z-index: 1; */
 }
 
 .random-container {
@@ -34,7 +43,23 @@ body {
     grid-template-columns: auto;
     padding: 30px;
     text-align: center;
+    justify-content: center;
     /* height: 90vh; */
+}
+
+.setting-btn-con {
+    margin-left: auto;
+    z-index: 2;
+}
+
+.setting-btn-con button {
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 25px;
+    background-color: #00000000;
+    color: white;
+    font-size: 50px;
 }
 
 .logo-con {
@@ -78,11 +103,11 @@ body {
     font-size: 22pt;
 }
 
-.btn-con {
+.rand-btn-con {
     grid-row: 5;
 }
 
-.btn-con button {
+.rand-btn-con button {
     width: 120px;
     height: 50px;
     border: 0;
@@ -94,11 +119,11 @@ body {
     /* z-index: 2; */
 }
 
-.btn-con button:hover {
+.rand-btn-con button:hover {
     scale: 1.05;
 }
 
-.btn-con button:active {
+.rand-btn-con button:active {
     scale: 0.95;
     color: #aaa;
 }
@@ -108,13 +133,147 @@ body {
     /* border: 1px solid; */
 }
 
+.hidden {
+    display: none;
+}
+
+.two-cols {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /* grid-gap: 10px; */
+    /* border: 1px solid; */
+}
+
+.one-col {
+    display: grid;
+    grid-template-columns: auto;
+    /* grid-gap: 10px; */
+    /* border: 1px solid; */
+}
+
+.setting-container {
+    position: fixed;
+    background-color: #ffffff88;
+    max-width: 940px;
+    height: 80vh;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow-y: scroll;
+    z-index: 3;
+}
+
+.close-btn-panel {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+}
+
+.closeSetting-btn-con {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* border: 1px solid; */
+}
+
+.closeSetting-btn-con button {
+    /* position: fixed; */
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+}
+
+.setting-container h2 {
+    margin-bottom: 10px;
+}
+
+/* The container */
+.check-container {
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-block: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* border: 1px solid; */
+}
+
+/* Hide the browser's default checkbox */
+.check-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    height: 25px;
+    width: 25px;
+    border-radius: 5px;
+    background-color: #bbbbbb88;
+}
+
+/* On mouse-over, add a grey background color */
+.check-container:hover input~.checkmark {
+    background-color: #bbb;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check-container input:checked~.checkmark {
+    background-color: orangered;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.check-container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.check-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 .shadow {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .bounce {
     animation-name: bounce;
-    animation-duration: 0.5s;
+    animation-duration: 0.6s;
 }
 
 .roll {
@@ -125,6 +284,16 @@ body {
 .pop {
     animation-name: pop;
     animation-duration: 0.2s;
+}
+
+.slide-in {
+    animation-name: slide-in;
+    animation-duration: 0.4s;
+}
+
+.slide-out {
+    animation-name: slide-out;
+    animation-duration: 0.4s;
 }
 
 @keyframes bounce {
@@ -159,6 +328,24 @@ body {
     100% {
         transform: translate(-50%, 0);
         animation-timing-function: linear;
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translate(-50%, 100%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+    
+@keyframes slide-out {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(-50%, 100%);
     }
 }
 
