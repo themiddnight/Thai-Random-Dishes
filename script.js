@@ -112,11 +112,11 @@ const menus = new Menus();
 //////////////////////// generate setting menu in html ////////////////////////
 
 function generateHtmlList(list, listDivId) {
-    if (list.includes("")) {
-        list.splice(list.indexOf(""), 1);
-    }
     const listDiv = document.getElementById(listDivId);
     list.forEach(menu => {
+        if (menu === "") {
+            return;
+        }
         const label = document.createElement("label");
         label.classList.add("check-container");
         label.innerHTML = `${menu}<input type="checkbox" value="${menu}" checked>
