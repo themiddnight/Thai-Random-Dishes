@@ -2,76 +2,76 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, 
-																 height=device-height,
-																 initial-scale=1, 
-																 minimum-scale=1, 
-																 maximum-scale=1">
-  <meta property="og:title" content="Random Thai Dish">
-  <meta property="og:description" content="ไม่รู้จะกินอะไร ลองมาสุ่มกัน แล้วลุ้นกันว่าแม่ครัวจะว่ายังไง!">
-  <meta property="og:image"
-    content="https://github.com/themiddnight/Thai-Random-Dishes/blob/main/image/thumbnail.jpg?raw=true">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <title>Random Thai Dish</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, 
+									height=device-height,
+									initial-scale=1, 
+									minimum-scale=1, 
+									maximum-scale=1">
+    <meta property="og:title" content="Random Thai Dish">
+    <meta property="og:description" content="ไม่รู้จะกินอะไร ลองมาสุ่มกัน แล้วลุ้นกันว่าแม่ครัวจะว่ายังไง!">
+    <meta property="og:image"
+        content="https://github.com/themiddnight/Thai-Random-Dishes/blob/main/image/thumbnail.jpg?raw=true">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Random Thai Dish</title>
 </head>
 
 <body>
-  <div class="main-container">
+    <div class="main-container">
+        <!-- main container -->
+        <div class="random-container">
+            <div class="setting-btn-con">
+                <img src="image/gear.svg" alt="" id="settingBtn">
+            </div>
 
-    <div class="random-container">
-      <div class="setting-btn-con">
-        <button id="settingBtn">⚙</button>
-      </div>
-      <div class="logo-con center">
-        <div class="oval"></div>
-        <h1 id="logo">🍛</h1>
-      </div>
-      <div class="title-con center shadow" id="title-con">
-        <h1 id="title">วันนี้กินไรดี?</h1>
-      </div>
-      <div class="rand-btn-con center">
-        <button class="shadow" id="getMenuBtn">สุ่มมา !</button>
-      </div>
-      <div class="subtitle-con center">
-        <p id="subtitle"></p>
-      </div>
-    </div>
+            <div class="logo-con center">
+                <div class="oval"></div>
+                <h1 id="logo">🍛</h1>
+            </div>
 
-    <div class="setting-container shadow hidden" id="setting-container">
-      <div class="close-btn-panel">
-        <div class="closeSetting-btn-con">
-          <button class="shadow" id="closeSettingBtn">╳</button>
+            <div class="title-con center shadow" id="title-con">
+                <h1 id="title">วันนี้กินไรดี?</h1>
+            </div>
+
+            <div class="rand-btn-con center">
+                <button class="shadow" id="getMenuBtn">สุ่มมา !</button>
+            </div>
+
+            <div class="subtitle-con center">
+                <p id="subtitle"></p>
+            </div>
         </div>
-      </div>
 
-      <h2>รายการเมนู</h2>
-      <div class="menuList one-col" id="menuList">
-      </div>
-      <hr>
+        <!-- settings container -->
+        <div class="setting-container shadow hidden" id="setting-container">
+            <div class="close-btn-panel">
+                <div class="closeSetting-btn-con">
+                    <button class="shadow" id="closeSettingBtn">╳</button>
+                </div>
+            </div>
 
-      <h2>รายการเนื้อ</h2>
-      <div class="meatList two-cols" id="meatList">
-      </div>
-      <hr>
+            <h2>รายการเมนู</h2>
+            <div class="menuList one-col" id="menuList"></div>
+            <hr>
 
-      <h2>รายการปรุงเนื้อ</h2>
-      <div class="meatProcList two-cols" id="meatProcList">
-      </div>
-      <hr>
+            <h2>รายการเนื้อ</h2>
+            <div class="meatList two-cols" id="meatList"></div>
+            <hr>
 
-      <h2>รายการผัก</h2>
-      <div class="vegList two-cols" id="vegList">
-      </div>
-      <hr>
+            <h2>รายการปรุงเนื้อ</h2>
+            <div class="meatProcList two-cols" id="meatProcList"></div>
+            <hr>
 
-      <h2>รายการทอปปิ้ง</h2>
-      <div class="topList two-cols" id="topList">
-      </div>
+            <h2>รายการผัก</h2>
+            <div class="vegList two-cols" id="vegList"></div>
+            <hr>
+
+            <h2>รายการทอปปิ้ง</h2>
+            <div class="topList two-cols" id="topList"></div>
+        </div>
+
     </div>
-
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
