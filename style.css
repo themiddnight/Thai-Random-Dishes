@@ -420,9 +420,9 @@ hr {
         position: relative;
         display: block;
         width: 400px;
-        background-color: #00000000;
+        background-color: #ffffff00;
         /* border-radius: 0; */
-        box-shadow: 0 0 0 0;
+        /* box-shadow: 0 0 0 0; */
         border: 1px solid #00000088;
     }
     .closeSetting-btn-con {
