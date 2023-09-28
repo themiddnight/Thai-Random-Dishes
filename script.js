@@ -137,15 +137,15 @@ generateHtmlList(menus.topList, "topList");
 
 // get all of checkbox in each ListDiv
 const menuListCheckbox = document.getElementById("menuList")
-.querySelectorAll("input[type=checkbox]");
+    .querySelectorAll("input[type=checkbox]");
 const meatListCheckbox = document.getElementById("meatList")
-.querySelectorAll("input[type=checkbox]");
+    .querySelectorAll("input[type=checkbox]");
 const meatProcListCheckbox = document.getElementById("meatProcList")
-.querySelectorAll("input[type=checkbox]");
+    .querySelectorAll("input[type=checkbox]");
 const vegListCheckbox = document.getElementById("vegList")
-.querySelectorAll("input[type=checkbox]");
+    .querySelectorAll("input[type=checkbox]");
 const topListCheckbox = document.getElementById("topList")
-.querySelectorAll("input[type=checkbox]");
+    .querySelectorAll("input[type=checkbox]");
 
 // get all of the value of checkboxs that get checked in ListDiv
 function getCheckedMenu(checkboxes) {
@@ -159,11 +159,9 @@ function getCheckedMenu(checkboxes) {
 }
 
 function addExcludeItems() {
-    menus.menuExc = [];
-    menus.meatProcExc = [];
-    menus.meatExc = [];
-    menus.vegExc = [];
-    menus.topExc = [];
+    menus.menuExc, menus.meatProcExc, menus.meatExc, 
+    menus.vegExc, menus.topExc = [];
+
     menus.menuExc = getCheckedMenu(menuListCheckbox);
     menus.meatProcExc = getCheckedMenu(meatProcListCheckbox);
     menus.meatExc = getCheckedMenu(meatListCheckbox);
@@ -191,53 +189,47 @@ function setMenuTx() {
     });
 }
 
-function popMenuTitleCon() {
-    const menuTitleCon = document.getElementById("title-con");
-    if (menuTitleCon.classList.contains("pop")) {
-        menuTitleCon.classList.remove("pop");
-    }
-    menuTitleCon.offsetWidth = menuTitleCon.offsetWidth;
-    menuTitleCon.classList.add("pop");
-}
-
-function bouncLogo() {
-    const logo = document.getElementById("logo");
-    if (logo.classList.contains("bounce")) {
-        logo.classList.remove("bounce");
-    }
-    logo.offsetWidth = logo.offsetWidth;
-    logo.classList.add("bounce");
-}
-
 ////// press button - do random menu
+const logo = document.getElementById("logo");
+const titleCon = document.getElementById("title-con");
 const getMenuBtn = document.getElementById("getMenuBtn");
+const subtitle = document.getElementById("subtitle");
 let randCount = 0;
+
 getMenuBtn.addEventListener("click", async () => {
+    titleCon.classList.remove("roll");
+    titleCon.classList.remove("pop");
+    logo.classList.remove("bounce");
+    titleCon.offsetWidth = titleCon.offsetWidth;
+    titleCon.offsetWidth = titleCon.offsetWidth;
+    logo.offsetWidth = logo.offsetWidth;
+
+    titleCon.classList.add("roll");
+
     await setMenuTx();
-    popMenuTitleCon();
-    bouncLogo();
-    randCount++;
+
+    titleCon.classList.add("pop");
+    logo.classList.add("bounce");
 
     // subtitle show
-    const subtitle = document.getElementById("subtitle");
     if (randCount >= 10 && randCount <= 30) {
         subtitle.innerHTML = `ไม่ถูกใจ ${randCount} ครั้งแล้ว`;
     }
     else if (randCount > 30) {
         subtitle.innerHTML = `${randCount} รอบแล้ว.. จะได้กินมั้ยนะ?`;
     }
+
+    randCount++;
 });
 
-//////////////////////// setting menu ////////////////////////
+//////////////////////// show setting menu ////////////////////////
 
 // show setting menu
 const settingBtn = document.getElementById("settingBtn");
 const settingMenu = document.getElementById("setting-container");
 settingBtn.addEventListener("click", () => {
+    settingMenu.classList.remove("slide-out");
     settingMenu.classList.toggle("hidden");
-    if (settingMenu.classList.contains("slide-out")) {
-        settingMenu.classList.remove("slide-out");
-    }
     settingMenu.offsetWidth = settingMenu.offsetWidth;
     settingMenu.classList.add("slide-in");
 });
@@ -245,9 +237,7 @@ settingBtn.addEventListener("click", () => {
 // close setting menu
 const closeBtn = document.getElementById("closeSettingBtn");
 closeBtn.addEventListener("click", () => {
-    if (settingMenu.classList.contains("slide-in")) {
-        settingMenu.classList.remove("slide-in");
-    }
+    settingMenu.classList.remove("slide-in");
     settingMenu.offsetWidth = settingMenu.offsetWidth;
     settingMenu.classList.add("slide-out");
     setTimeout(() => {

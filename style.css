@@ -36,16 +36,18 @@ hr {
 
 .random-container {
     display: grid;
-    grid-template-rows: 0% 35% 30% 15% 10% 10% 0%;
+    grid-template-rows: 0% 30% 30% 20% 10% 10% 0%;
     grid-template-columns: auto;
     padding: 30px;
     text-align: center;
     justify-content: center;
+    align-items: center;
 }
 
 .setting-btn-con {
     position: fixed;
     right: 10%;
+    top: 5%;
     z-index: 2;
 }
 
@@ -60,7 +62,6 @@ hr {
     font-size: 50px;
     transition: 0.2s;
 }
-/* when tap from iphone */
 
 .setting-btn-con img:active {
     scale: 0.8;
@@ -129,6 +130,10 @@ hr {
 
 .subtitle-con {
     grid-row: 6;
+}
+
+.subtitle-con p {
+    font-size: 10pt;
 }
 
 .hidden {
@@ -270,7 +275,7 @@ hr {
 
 .roll {
     animation-name: roll;
-    animation-duration: 0.1s;
+    animation-duration: 2.5s;
 }
 
 .pop {
@@ -339,6 +344,20 @@ hr {
     100% {
         transform: translate(-50%, 100%);
     }
+}
+
+@keyframes roll {
+    0% {
+        scale: 1;
+        animation-timing-function: ease-out;
+    }
+    7% {
+        scale: 0.9;
+    }
+    100% {
+        scale: 1;
+    }
+    
 }
 
 @keyframes pop {
