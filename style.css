@@ -58,7 +58,7 @@ hr {
     border: 0;
     border-radius: 25px;
     background-color: #00000000;
-    color: white;
+    filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.1));
     font-size: 50px;
     transition: 0.2s;
 }
@@ -69,6 +69,7 @@ hr {
 }
 
 .logo-con {
+    position: relative;
     grid-row: 2;
 }
 
@@ -106,6 +107,7 @@ hr {
 
 .rand-btn-con {
     grid-row: 5;
+    align-self: end;
 }
 
 .rand-btn-con button {
@@ -130,6 +132,8 @@ hr {
 
 .subtitle-con {
     grid-row: 6;
+    align-self: start;
+    padding: 30px;
 }
 
 .subtitle-con p {
@@ -151,9 +155,10 @@ hr {
 }
 
 .setting-container {
-    position: fixed;
+    /* display: none; */
+    position: absolute;
     background-color: #ffffff88;
-    max-width: 940px;
+    max-width: 540px;
     height: 80vh;
     width: 90%;
     top: 50%;
@@ -179,20 +184,16 @@ hr {
     right: 0;
 }
 
-.closeSetting-btn-con button {
+.closeSetting-btn-con img {
     width: 40px;
     height: 40px;
-    border: 0;
     border-radius: 50%;
-    background-color: white;
-    color: black;
-    font-size: 20px;
+    filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.1));
     transition: 0.2s;
 }
 
-.closeSetting-btn-con button:active {
+.closeSetting-btn-con img:active {
     scale: 0.8;
-    background-color: #aaa;
 }
 
 .setting-container h2 {
@@ -231,7 +232,7 @@ hr {
     height: 25px;
     width: 25px;
     border-radius: 5px;
-    background-color: #bbbbbb88;
+    background-color: #ffffff88;
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -275,7 +276,7 @@ hr {
 
 .roll {
     animation-name: roll;
-    animation-duration: 2.5s;
+    animation-duration: 3s;
 }
 
 .pop {
@@ -351,7 +352,7 @@ hr {
         scale: 1;
         animation-timing-function: ease-out;
     }
-    7% {
+    5% {
         scale: 0.9;
     }
     100% {
@@ -389,31 +390,42 @@ hr {
     }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 1024px) {
     .main-container {
+        grid-template-columns: auto auto;
         max-width: 1280px;
+        height: 100vh;
+    }
+    .setting-btn-con {
+        display: none;
     }
     .logo-con h1 {
-        font-size: 130pt;
+        font-size: 120pt;
     }
-    .oval {
-        height: 70px;
-        width: 150px;
-        transform: translate(-50%, 50px);
-    }
-    .title-con {
-        width: 600px;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .main-container {
-        max-width: 1280px;
-    }
-    .oval {
-        transform: translate(-50%, 50px);
+    .random-container {
+        width: 400px;
+        grid-column: 2;
+        grid-row: 1;
+        grid-template-rows: 0% 30% 30% 10% 10% 10% 10%;
     }
     .title-con {
-        width: 800px;
+        width: 350px;
+    }
+    .rand-btn-con button {
+        scale: 1.1;
+    }
+    .setting-container {
+        grid-column: 1;
+        grid-row: 1;
+        position: relative;
+        display: block;
+        width: 400px;
+        background-color: #00000000;
+        /* border-radius: 0; */
+        box-shadow: 0 0 0 0;
+        border: 1px solid #00000088;
+    }
+    .closeSetting-btn-con {
+        display: none;
     }
 }

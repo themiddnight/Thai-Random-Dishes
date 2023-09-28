@@ -6,37 +6,22 @@ class Menus {
         this.vegExc = [];
         this.topExc = [];
 
+        // initial array for generateHtmlList
         this.meatProcList = ["", "สับ", "กรอบ", "ทอด", "ต้ม",
-            "ย่าง", "ย่างเกลือ", "อบ", "เผา"];
-        const proc = this.getRandProc()
-        this.meatListObj = {
-            "หมู": "หมู" + proc,
-            "ไก่": "ไก่" + proc,
-            "เนื้อ": "เนื้อ" + proc,
-            "ปลา": "ปลา" + proc,
-            "กุ้ง": "กุ้ง" + proc,
-            "ทะเล": "ทะเล",
-            "ปลาหมึก": "ปลาหมึก",
-            "ปู": "ปู",
-            "ปูอัด": "ปูอัด",
-            "ใส้กรอก": "ใส้กรอก",
-            "ไข่เยี่ยวม้า": "ไข่เยี่ยวม้า"
+            "ย่าง", "ย่างเกลือ", "อบ", "เผา"
+        ];
+        this.meatListObj = {"" : "", "หมู": "หมู", "ไก่": "ไก่",
+            "เนื้อ": "เนื้อ", "ปลา": "ปลา", "กุ้ง": "กุ้ง", "ทะเล": "ทะเล", 
+            "ปลาหมึก": "ปลาหมึก", "ปู": "ปู", "ปูอัด": "ปูอัด", 
+            "ใส้กรอก": "ใส้กรอก", "ไข่เยี่ยวม้า": "ไข่เยี่ยวม้า"
         };
         this.meatList = Object.keys(this.meatListObj);
         this.vegList = ["", "คะน้า", "ผักบุ้ง", "ผักรวม", "แครอท",
             "กะหล่ำปลี", "บล็อคโคลี่", "ผักกาด"];
         this.topList = ["", "ไข่เจียว", "ไข่ดาว", "ไข่ข้น", "ไข่เค็ม"];
-        this.menuList = [
-            "ข้าวผัด",
-            "ทอดกระเทียม",
-            "ทอดน้ำปลา",
-            "ผัดน้ำมันหอย",
-            "คั่วพริกเกลือ",
-            "กระเพรา",
-            "ข้าวไข่",
-            "ผัดเผ็ด",
-            "ผัดพริกแกง",
-            "ผัดผงกะหรี่"
+        this.menuList = ["ข้าวผัด", "ทอดกระเทียม", "ทอดน้ำปลา", 
+            "ผัดน้ำมันหอย", "คั่วพริกเกลือ", "กระเพรา", "ข้าวไข่", 
+            "ผัดเผ็ด", "ผัดพริกแกง", "ผัดผงกะหรี่"
         ]
     }
 
@@ -61,21 +46,11 @@ class Menus {
 
     getRandIngredient() {
         let meat, veg, top;
-        meat = this.randomObj(this.meatListObj, this.meatExc);
-        do {
-            veg = this.randomArray(this.vegList);
-        } while (this.vegExc.includes(veg));
-        do {
-            top = this.randomArray(this.topList);
-        } while (this.topExc.includes(top));
-        return [meat, veg, top];
-    }
 
-    getMenu() {
-        const [, veg, top] = this.getRandIngredient();
         // re-random proc
         const proc = this.getRandProc()
         this.meatListObj = {
+            "" : "",
             "หมู": "หมู" + proc,
             "ไก่": "ไก่" + proc,
             "เนื้อ": "เนื้อ" + proc,
@@ -89,8 +64,19 @@ class Menus {
             "ไข่เยี่ยวม้า": "ไข่เยี่ยวม้า"
         };
         this.meatList = Object.keys(this.meatListObj);
-        const meat = this.randomObj(this.meatListObj, this.meatExc);
+        meat = this.randomObj(this.meatListObj, this.meatExc);
+        
+        do {
+            veg = this.randomArray(this.vegList);
+        } while (this.vegExc.includes(veg));
+        do {
+            top = this.randomArray(this.topList);
+        } while (this.topExc.includes(top));
+        return [meat, veg, top];
+    }
 
+    getMenu() {
+        const [meat, veg, top] = this.getRandIngredient();
         this.menusObj = {
             "ข้าวผัด": `ข้าวผัด${meat}${veg}${top}`,
             "ทอดกระเทียม": `${meat}ทอดกระเทียม${top}`,
@@ -109,7 +95,7 @@ class Menus {
 
 const menus = new Menus();
 
-//////////////////////// generate setting menu in html ////////////////////////
+////////////////////// generate setting menu in html //////////////////////
 
 function generateHtmlList(list, listDivId) {
     const listDiv = document.getElementById(listDivId);
@@ -123,9 +109,19 @@ function generateHtmlList(list, listDivId) {
                             <span class="checkmark"></span>`;
         listDiv.appendChild(label);
     });
+
     listDiv.querySelectorAll("input[type=checkbox]")
     .forEach(checkbox => {
-        checkbox.addEventListener("click", addExcludeItems);
+        checkbox.addEventListener("click", () => {
+            menus.menuExc, menus.meatProcExc, menus.meatExc, 
+            menus.vegExc, menus.topExc = [];
+        
+            menus.menuExc = getCheckedMenu(menuListCheckbox);
+            menus.meatProcExc = getCheckedMenu(meatProcListCheckbox);
+            menus.meatExc = getCheckedMenu(meatListCheckbox);
+            menus.vegExc = getCheckedMenu(vegListCheckbox);
+            menus.topExc = getCheckedMenu(topListCheckbox);
+        });
     });
 }
 
@@ -135,7 +131,7 @@ generateHtmlList(menus.meatProcList, "meatProcList");
 generateHtmlList(menus.vegList, "vegList");
 generateHtmlList(menus.topList, "topList");
 
-// get all of checkbox in each ListDiv
+// get all of checkbox in each ListDiv (after generateHtmlList)
 const menuListCheckbox = document.getElementById("menuList")
     .querySelectorAll("input[type=checkbox]");
 const meatListCheckbox = document.getElementById("meatList")
@@ -151,22 +147,9 @@ const topListCheckbox = document.getElementById("topList")
 function getCheckedMenu(checkboxes) {
     const unchecked = [];
     checkboxes.forEach(checkbox => {
-        if (!checkbox.checked) {
-            unchecked.push(checkbox.value);
-        }
+        !checkbox.checked ? unchecked.push(checkbox.value) : null;
     });
     return unchecked;
-}
-
-function addExcludeItems() {
-    menus.menuExc, menus.meatProcExc, menus.meatExc, 
-    menus.vegExc, menus.topExc = [];
-
-    menus.menuExc = getCheckedMenu(menuListCheckbox);
-    menus.meatProcExc = getCheckedMenu(meatProcListCheckbox);
-    menus.meatExc = getCheckedMenu(meatListCheckbox);
-    menus.vegExc = getCheckedMenu(vegListCheckbox);
-    menus.topExc = getCheckedMenu(topListCheckbox);
 }
 
 //////////////////////// do random menu ////////////////////////
@@ -227,6 +210,7 @@ getMenuBtn.addEventListener("click", async () => {
 // show setting menu
 const settingBtn = document.getElementById("settingBtn");
 const settingMenu = document.getElementById("setting-container");
+settingMenu.classList.toggle("hidden");
 settingBtn.addEventListener("click", () => {
     settingMenu.classList.remove("slide-out");
     settingMenu.classList.toggle("hidden");
