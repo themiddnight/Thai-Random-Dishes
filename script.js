@@ -168,6 +168,21 @@ function checktMenuSelection() {
     }
 }
 
+///////////////////////// clear animations /////////////////////////
+
+function clearAnimations(nodes) {
+    for (let node of nodes) {
+        node.classList.remove("roll");
+        node.classList.remove("pop");
+        node.classList.remove("bounce");
+        node.classList.remove("squish");
+        node.classList.remove("showAndHide");
+        node.classList.remove("slide-in");
+        node.classList.remove("slide-out");
+        node.offsetWidth = node.offsetWidth;
+    }
+}
+
 //////////////////////// do random menu ////////////////////////
 
 function setMenuTx() {
@@ -198,17 +213,9 @@ var randCount = 0;
 getMenuBtn.addEventListener("click", async () => {
     if (checktMenuSelection()) {
         // clear animation class
-        titleCon.classList.remove("roll");
-        titleCon.classList.remove("pop");
-        logo.classList.remove("bounce");
-        titleCon.offsetWidth = titleCon.offsetWidth;
-        titleCon.offsetWidth = titleCon.offsetWidth;
-        logo.offsetWidth = logo.offsetWidth;
-
+        clearAnimations([titleCon, logo]);
         titleCon.classList.add("roll");
-
         await setMenuTx();
-
         titleCon.classList.add("pop");
         logo.classList.add("bounce");
 
@@ -229,15 +236,12 @@ getMenuBtn.addEventListener("click", async () => {
 function copyClipboard() {
     if (randCount > 0) {
         let menu = document.getElementById("title").innerHTML;
+        let coppiedMsg = document.getElementById("coppiedMsg");
         navigator.clipboard.writeText(menu);
+        clearAnimations([titleCon, coppiedMsg]);
         // squish title
-        titleCon.classList.remove("squish");
-        titleCon.offsetWidth = titleCon.offsetWidth;
         titleCon.classList.add("squish");
         // show coppiedMsg
-        let coppiedMsg = document.getElementById("coppiedMsg");
-        coppiedMsg.classList.remove("showAndHide");
-        coppiedMsg.offsetWidth = titleCon.offsetWidth;
         coppiedMsg.classList.add("showAndHide");
     }
 };
@@ -249,23 +253,34 @@ const settingBtn = document.getElementById("settingBtn");
 const settingMenu = document.getElementById("setting-container");
 settingMenu.classList.toggle("hidden");
 settingBtn.addEventListener("click", () => {
-    settingMenu.classList.remove("slide-out");
+    clearAnimations([settingMenu]);
     settingMenu.classList.toggle("hidden");
-    settingMenu.offsetWidth = settingMenu.offsetWidth;
     settingMenu.classList.add("slide-in");
+    settingBtn.classList.toggle("hidden");
 });
 
-// close setting menu
-const closeBtn = document.getElementById("closeSettingBtn");
-closeBtn.addEventListener("click", () => {
+function closeSettingMenu() {
     // if checkboxes in menuList class are not all unchecked, close setting menu.
     if (checktMenuSelection()) {
-        settingMenu.classList.remove("slide-in");
-        settingMenu.offsetWidth = settingMenu.offsetWidth;
+        clearAnimations([settingMenu]);
         settingMenu.classList.add("slide-out");
+        settingBtn.classList.toggle("hidden");
         setTimeout(() => {
             settingMenu.classList.toggle("hidden");
         }, 400);
+    }
+};
+
+// close setting menu - button
+const closeBtn = document.getElementById("closeSettingBtn");
+closeBtn.addEventListener("click", closeSettingMenu);
+
+// close setting menu - click anywhere except settingMenu
+document.addEventListener("click", (e) => {
+    if (!settingMenu.contains(e.target)
+        && !settingBtn.contains(e.target)
+        && !settingMenu.classList.contains("hidden")) {
+        closeSettingMenu();
     }
 });
 

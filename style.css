@@ -201,6 +201,7 @@ hr {
     height: 40px;
     /* border-radius: 50%; */
     filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.1));
+    cursor: pointer;
     transition: 0.2s;
 }
 
@@ -423,18 +424,22 @@ hr {
 @keyframes slide-in {
     0% {
         transform: translate(-50%, 100%);
+        opacity: 0;
     }
     100% {
         transform: translate(-50%, -50%);
+        opacity: 1;
     }
 }
     
 @keyframes slide-out {
     0% {
         transform: translate(-50%, -50%);
+        opacity: 1;
     }
     100% {
         transform: translate(-50%, 100%);
+        opacity: 0;
     }
 }
 
