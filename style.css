@@ -8,6 +8,9 @@
 html {
     font-family: Arial, Helvetica, sans-serif;
     background-color: orange;
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
 }
 
 hr {
@@ -36,7 +39,7 @@ hr {
 
 .random-container {
     display: grid;
-    grid-template-rows: 0% 30% 30% 17% 10% 10% 0%;
+    grid-template-rows: 0% 30% 30% 15% 10% 10% 5%;
     grid-template-columns: auto;
     padding: 0px;
     text-align: center;
@@ -92,16 +95,25 @@ hr {
 .title-con {
     grid-row: 3;
     background-color: #ffffff88;
-    width: 300px;
+    width: 330px;
     height: 140px;
     border-radius: 20px;
+    cursor: pointer;
     overflow: hidden;
 }
 
 .title-con h1 {
     width: 85%;
     font-size: 22pt;
-    cursor: default;
+}
+
+.coppiedMsg-con {
+    grid-row: 4;
+    height: 100%;
+}
+
+.coppiedMsg-con p {
+    opacity: 0;
 }
 
 .rand-btn-con {
@@ -110,7 +122,7 @@ hr {
 }
 
 .rand-btn-con button {
-    width: 120px;
+    width: 130px;
     height: 50px;
     border: 0;
     border-radius: 25px;
@@ -187,7 +199,7 @@ hr {
 .closeSetting-btn-con img {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.1));
     transition: 0.2s;
 }
@@ -204,21 +216,12 @@ hr {
 
 .setting-title h2 {
     margin-right: 10px;
-}
-
-.setting-title p {
-    color: #00000088;
     text-decoration: underline;
-    transform: translateY(-2px);
     cursor: pointer;
 }
 
-.setting-title p:hover {
-    color: #000000;
-}
-
-.setting-title p:active {
-    color: #00000044;
+.setting-title h2:active {
+    color: #888;
 }
 
 /* The container */
@@ -233,6 +236,7 @@ hr {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-wrap: nowrap;
 }
 
 /* Hide the browser's default checkbox */
@@ -305,6 +309,16 @@ hr {
     animation-duration: 0.2s;
 }
 
+.squish {
+    animation-name: squish;
+    animation-duration: 0.2s;
+}
+
+.showAndHide {
+    animation-name: showAndHide;
+    animation-duration: 2s;
+}
+
 .slide-in {
     animation-name: slide-in;
     animation-duration: 0.4s;
@@ -350,24 +364,6 @@ hr {
     }
 }
 
-@keyframes slide-in {
-    0% {
-        transform: translate(-50%, 100%);
-    }
-    100% {
-        transform: translate(-50%, -50%);
-    }
-}
-    
-@keyframes slide-out {
-    0% {
-        transform: translate(-50%, -50%);
-    }
-    100% {
-        transform: translate(-50%, 100%);
-    }
-}
-
 @keyframes roll {
     0% {
         scale: 1;
@@ -379,7 +375,6 @@ hr {
     100% {
         scale: 1;
     }
-    
 }
 
 @keyframes pop {
@@ -398,8 +393,53 @@ hr {
     }
 }
 
+@keyframes squish {
+    0% {
+        scale: 1;
+    }
+    40% {
+        scale: 0.9;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+@keyframes showAndHide {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translate(-50%, 100%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+    
+@keyframes slide-out {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(-50%, 100%);
+    }
+}
+
 /* responsive */
-@media screen and (max-width: 330px) {
+@media screen and (max-width: 360px) {
     .main-container {
         max-width: 300px;
     }
@@ -408,6 +448,15 @@ hr {
     }
     .title-con {
         width: 250px;
+    }
+    .setting-title h2 {
+        font-size: 16pt;
+    }
+    .setting-title p {
+        font-size: 10pt;
+    }
+    .check-container {
+        font-size: 12pt;
     }
 }
 

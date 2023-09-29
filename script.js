@@ -146,11 +146,26 @@ const menuListCheckbox = Array.from(checkboxesList);
 
 // get all of the value of checkboxs that get checked in ListDiv
 function getCheckedMenu(checkboxes) {
-    const unchecked = [];
+    let unchecked = [];
     checkboxes.forEach(checkbox => {
         !checkbox.checked ? unchecked.push(checkbox.value) : null;
     });
     return unchecked;
+}
+
+////////////// alert to select at least one menu //////////////
+
+function checktMenuSelection() {
+    let menuListCheckboxes = Array.from(document.getElementsByClassName("menuList"))
+        .map(div => Array.from(div.querySelectorAll("input[type=checkbox]")))
+        .flat();
+    let someChecked = menuListCheckboxes.some(checkbox => checkbox.checked);
+    if (someChecked) {
+        return true;
+    } else {
+        alert("เลือกซักเมนูนึงก่อนซิ!");
+        return false;
+    }
 }
 
 //////////////////////// do random menu ////////////////////////
@@ -178,33 +193,54 @@ const logo = document.getElementById("logo");
 const titleCon = document.getElementById("title-con");
 const getMenuBtn = document.getElementById("getMenuBtn");
 const subtitle = document.getElementById("subtitle");
-let randCount = 0;
+var randCount = 0;
 
 getMenuBtn.addEventListener("click", async () => {
-    titleCon.classList.remove("roll");
-    titleCon.classList.remove("pop");
-    logo.classList.remove("bounce");
-    titleCon.offsetWidth = titleCon.offsetWidth;
-    titleCon.offsetWidth = titleCon.offsetWidth;
-    logo.offsetWidth = logo.offsetWidth;
+    if (checktMenuSelection()) {
+        // clear animation class
+        titleCon.classList.remove("roll");
+        titleCon.classList.remove("pop");
+        logo.classList.remove("bounce");
+        titleCon.offsetWidth = titleCon.offsetWidth;
+        titleCon.offsetWidth = titleCon.offsetWidth;
+        logo.offsetWidth = logo.offsetWidth;
 
-    titleCon.classList.add("roll");
+        titleCon.classList.add("roll");
 
-    await setMenuTx();
+        await setMenuTx();
 
-    titleCon.classList.add("pop");
-    logo.classList.add("bounce");
+        titleCon.classList.add("pop");
+        logo.classList.add("bounce");
 
-    // subtitle show
-    if (randCount >= 10 && randCount <= 30) {
-        subtitle.innerHTML = `ไม่ถูกใจ ${randCount} ครั้งแล้ว`;
+        // subtitle show
+        if (randCount >= 10 && randCount <= 30) {
+            subtitle.innerHTML = `ไม่ถูกใจ ${randCount} ครั้งแล้ว`;
+        }
+        else if (randCount > 30) {
+            subtitle.innerHTML = `${randCount} รอบแล้ว.. จะได้กินมั้ยนะ?`;
+        }
+        randCount++;
     }
-    else if (randCount > 30) {
-        subtitle.innerHTML = `${randCount} รอบแล้ว.. จะได้กินมั้ยนะ?`;
-    }
-
-    randCount++;
 });
+
+//////////////////////// copy menu ////////////////////////
+
+// copy menu to clipboard
+function copyClipboard() {
+    if (randCount > 0) {
+        let menu = document.getElementById("title").innerHTML;
+        navigator.clipboard.writeText(menu);
+        // squish title
+        titleCon.classList.remove("squish");
+        titleCon.offsetWidth = titleCon.offsetWidth;
+        titleCon.classList.add("squish");
+        // show coppiedMsg
+        let coppiedMsg = document.getElementById("coppiedMsg");
+        coppiedMsg.classList.remove("showAndHide");
+        coppiedMsg.offsetWidth = titleCon.offsetWidth;
+        coppiedMsg.classList.add("showAndHide");
+    }
+};
 
 //////////////////////// show setting menu ////////////////////////
 
@@ -222,26 +258,28 @@ settingBtn.addEventListener("click", () => {
 // close setting menu
 const closeBtn = document.getElementById("closeSettingBtn");
 closeBtn.addEventListener("click", () => {
-    settingMenu.classList.remove("slide-in");
-    settingMenu.offsetWidth = settingMenu.offsetWidth;
-    settingMenu.classList.add("slide-out");
-    setTimeout(() => {
-        settingMenu.classList.toggle("hidden");
-    }, 400);
+    // if checkboxes in menuList class are not all unchecked, close setting menu.
+    if (checktMenuSelection()) {
+        settingMenu.classList.remove("slide-in");
+        settingMenu.offsetWidth = settingMenu.offsetWidth;
+        settingMenu.classList.add("slide-out");
+        setTimeout(() => {
+            settingMenu.classList.toggle("hidden");
+        }, 400);
+    }
 });
 
-//////////////////////// select/deselect all ////////////////////////
+//////////////////////// setting select/deselect all ////////////////////////
 
-// function for select/deselect all. 
-// pass the div class name menuList, meatList, meatProcList, vegList, topList
+// pass the div class name: menuList, meatList, meatProcList, vegList, topList
 // if checkboxes in the div are all checked, uncheck all.
 // else check all.
 function selectAll(divClassName) {
-    const checkboxes = Array.from(document.getElementsByClassName(divClassName))
+    let checkboxes = Array.from(document.getElementsByClassName(divClassName))
         .map(div => Array.from(div.querySelectorAll("input[type=checkbox]")))
         .flat();
 
-    const allChecked = checkboxes.every(checkbox => checkbox.checked);
+    let allChecked = checkboxes.every(checkbox => checkbox.checked);
     checkboxes.forEach(checkbox => {
         allChecked ? checkbox.checked = false : checkbox.checked = true;
     });
