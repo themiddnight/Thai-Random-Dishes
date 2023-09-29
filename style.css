@@ -57,6 +57,7 @@ hr {
     filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.1));
     font-size: 50px;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .setting-btn-con img:active {
@@ -85,6 +86,7 @@ hr {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0px);
+    cursor: default;
 }
 
 .title-con {
@@ -99,6 +101,7 @@ hr {
 .title-con h1 {
     width: 85%;
     font-size: 22pt;
+    cursor: default;
 }
 
 .rand-btn-con {
@@ -114,6 +117,7 @@ hr {
     font-size: large;
     background-color: black;
     color: white;
+    cursor: pointer;
     transition: 0.2s;
 }
 
@@ -410,6 +414,12 @@ hr {
     }
     .rand-btn-con button {
         scale: 1.1;
+    }
+    .rand-btn-con button:hover {
+        scale: 1.15;
+    }
+    .rand-btn-con button:active {
+        scale: 1;
     }
     .setting-container {
         grid-column: 1;
