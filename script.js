@@ -10,17 +10,18 @@ class Menus {
         this.meatProcList = ["", "สับ", "กรอบ", "ทอด", "ต้ม",
             "ย่าง", "ย่างเกลือ", "อบ", "เผา"
         ];
-        this.meatListObj = {"" : "", "หมู": "หมู", "ไก่": "ไก่",
-            "เนื้อ": "เนื้อ", "ปลา": "ปลา", "กุ้ง": "กุ้ง", "ทะเล": "ทะเล", 
-            "ปลาหมึก": "ปลาหมึก", "ปู": "ปู", "ปูอัด": "ปูอัด", 
+        this.meatListObj = {
+            "": "", "หมู": "หมู", "ไก่": "ไก่",
+            "เนื้อ": "เนื้อ", "ปลา": "ปลา", "กุ้ง": "กุ้ง", "ทะเล": "ทะเล",
+            "ปลาหมึก": "ปลาหมึก", "ปู": "ปู", "ปูอัด": "ปูอัด",
             "ใส้กรอก": "ใส้กรอก", "ไข่เยี่ยวม้า": "ไข่เยี่ยวม้า"
         };
         this.meatList = Object.keys(this.meatListObj);
         this.vegList = ["", "คะน้า", "ผักบุ้ง", "ผักรวม", "แครอท",
             "กะหล่ำปลี", "บล็อคโคลี่", "ผักกาด"];
         this.topList = ["", "ไข่เจียว", "ไข่ดาว", "ไข่ข้น", "ไข่เค็ม"];
-        this.menuList = ["ข้าวผัด", "ทอดกระเทียม", "ทอดน้ำปลา", 
-            "ผัดน้ำมันหอย", "คั่วพริกเกลือ", "กระเพรา", "ข้าวไข่", 
+        this.menuList = ["ข้าวผัด", "ทอดกระเทียม", "ทอดน้ำปลา",
+            "ผัดน้ำมันหอย", "คั่วพริกเกลือ", "กระเพรา", "ข้าวไข่",
             "ผัดเผ็ด", "ผัดพริกแกง", "ผัดผงกะหรี่"
         ]
     }
@@ -50,7 +51,7 @@ class Menus {
         // re-random proc
         const proc = this.getRandProc()
         this.meatListObj = {
-            "" : "",
+            "": "",
             "หมู": "หมู" + proc,
             "ไก่": "ไก่" + proc,
             "เนื้อ": "เนื้อ" + proc,
@@ -65,7 +66,7 @@ class Menus {
         };
         this.meatList = Object.keys(this.meatListObj);
         meat = this.randomObj(this.meatListObj, this.meatExc);
-        
+
         do {
             veg = this.randomArray(this.vegList);
         } while (this.vegExc.includes(veg));
@@ -97,39 +98,68 @@ const menus = new Menus();
 
 ////////////////////// generate setting menu in html //////////////////////
 
-function generateHtmlList(list, listDivId) {
-    const listDiv = document.getElementById(listDivId);
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function generateHtmlList(list, excList, listDivId) {
+    let listDiv = document.getElementById(listDivId);
     list.forEach(menu => {
         if (menu === "") {
             return;
         }
-        const label = document.createElement("label");
+        let label = document.createElement("label");
         label.classList.add("check-container");
-        label.innerHTML = `${menu}<input type="checkbox" value="${menu}" checked>
-                            <span class="checkmark"></span>`;
-        listDiv.appendChild(label);
-    });
+        label.innerHTML = menu;
 
-    listDiv.querySelectorAll("input[type=checkbox]")
-    .forEach(checkbox => {
-        checkbox.addEventListener("click", () => {
-            menus.menuExc, menus.meatProcExc, menus.meatExc, 
-            menus.vegExc, menus.topExc = [];
-        
+        let input = document.createElement("input");
+        input.type = "checkbox";
+        input.value = menu;
+        getCookie(menu);
+        if (!excList.includes(menu)) {
+            input.checked = true;
+        }
+
+        input.addEventListener("click", () => {
             menus.menuExc = getCheckedMenu(menuListCheckbox);
             menus.meatProcExc = getCheckedMenu(meatProcListCheckbox);
             menus.meatExc = getCheckedMenu(meatListCheckbox);
             menus.vegExc = getCheckedMenu(vegListCheckbox);
             menus.topExc = getCheckedMenu(topListCheckbox);
+
+            const expirationDate = new Date();
+            expirationDate.setMonth(expirationDate.getMonth() + 1);
+            let cookie = `${menu}=${input.checked}; expires=${expirationDate.toUTCString()}`;
+            // document.cookie = cookie;
+            // console.log(document.cookie);
         });
+
+        let span = document.createElement("span");
+        span.classList.add("checkmark");
+
+        label.appendChild(input);
+        label.appendChild(span);
+        listDiv.appendChild(label);
     });
 }
 
-generateHtmlList(menus.menuList, "menuList");
-generateHtmlList(menus.meatList, "meatList");
-generateHtmlList(menus.meatProcList, "meatProcList");
-generateHtmlList(menus.vegList, "vegList");
-generateHtmlList(menus.topList, "topList");
+generateHtmlList(menus.menuList, menus.menuExc, "menuList");
+generateHtmlList(menus.meatList, menus.meatExc, "meatList");
+generateHtmlList(menus.meatProcList, menus.meatProcExc, "meatProcList");
+generateHtmlList(menus.vegList, menus.vegExc, "vegList");
+generateHtmlList(menus.topList, menus.topExc, "topList");
 
 // get all of checkbox in each ListDiv (after generateHtmlList)
 const menuListCheckbox = document.getElementById("menuList")
