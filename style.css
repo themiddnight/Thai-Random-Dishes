@@ -196,8 +196,29 @@ hr {
     scale: 0.8;
 }
 
-.setting-container h2 {
+.setting-title {
+    display: flex;
+    align-items: baseline;
     margin-bottom: 10px;
+}
+
+.setting-title h2 {
+    margin-right: 10px;
+}
+
+.setting-title p {
+    color: #00000088;
+    text-decoration: underline;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+.setting-title p:hover {
+    color: #000000;
+}
+
+.setting-title p:active {
+    color: #00000044;
 }
 
 /* The container */

@@ -229,3 +229,25 @@ closeBtn.addEventListener("click", () => {
         settingMenu.classList.toggle("hidden");
     }, 400);
 });
+
+//////////////////////// select/deselect all ////////////////////////
+
+// function for select/deselect all. 
+// pass the div class name menuList, meatList, meatProcList, vegList, topList
+// if checkboxes in the div are all checked, uncheck all.
+// else check all.
+function selectAll(divClassName) {
+    const checkboxes = Array.from(document.getElementsByClassName(divClassName))
+        .map(div => Array.from(div.querySelectorAll("input[type=checkbox]")))
+        .flat();
+
+    const allChecked = checkboxes.every(checkbox => checkbox.checked);
+    checkboxes.forEach(checkbox => {
+        allChecked ? checkbox.checked = false : checkbox.checked = true;
+    });
+
+    // update menuExc
+    menus.menuExc = getCheckedMenu(menuListCheckbox);
+    // update localStorage
+    localStorage.setItem("menuExc", menus.menuExc);
+}
