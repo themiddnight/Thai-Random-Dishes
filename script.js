@@ -94,21 +94,11 @@ const menus = new Menus();
 
 ////////////////////// generate setting menu in html /////////////////////
 
-// check if browser support Web Storage
-if (typeof(Storage) !== "undefined") {
-    console.log("Web Storage support");
-  } else {
-    console.log("Web Storage not support");
-  }
-
-// read all cookie names. if the name is true, add the name to menuExc
-const cookieList = document.cookie.split("; ");
-cookieList.forEach(cookie => {
-    const [name, value] = cookie.split("=");
-    if (value === "false") {
-        menus.menuExc.push(name);
-    }
-});
+// read local storage. 
+const menuExc = localStorage.getItem("menuExc");
+// if the name is true, add the name to menuExc. 
+// if local storage is empty, set menuExc to empty array
+menuExc ? menus.menuExc = menuExc.split(",") : menus.menuExc = [];
 
 function generateHtmlList(list, listDivId) {
     let listDiv = document.getElementById(listDivId);
@@ -130,11 +120,8 @@ function generateHtmlList(list, listDivId) {
         input.addEventListener("click", () => {
             // update menuExc
             menus.menuExc = getCheckedMenu(menuListCheckbox);
-            // update cookie
-            const expirationDate = new Date();
-            expirationDate.setMonth(expirationDate.getMonth() + 1);
-            let cookie = `${menu}=${input.checked}; expires=${expirationDate.toUTCString()}`;
-            document.cookie = cookie;
+            // update localStorage
+            localStorage.setItem("menuExc", menus.menuExc);
         });
 
         let span = document.createElement("span");
