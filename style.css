@@ -212,7 +212,7 @@ hr {
 .setting-title {
     display: flex;
     align-items: baseline;
-    margin-bottom: 10px;
+    margin-block: 30px;
 }
 
 .setting-title h2 {

@@ -7,7 +7,7 @@ class Menus {
             "ย่าง", "ย่างเกลือ", "อบ", "เผา"
         ];
         this.meatListObj = {
-            "": "", "หมู": "หมู", "ไก่": "ไก่",
+            "หมู": "หมู", "ไก่": "ไก่",
             "เนื้อ": "เนื้อ", "ปลา": "ปลา", "กุ้ง": "กุ้ง", "ทะเล": "ทะเล",
             "ปลาหมึก": "ปลาหมึก", "ปู": "ปู", "ปูอัด": "ปูอัด",
             "ใส้กรอก": "ใส้กรอก", "ไข่เยี่ยวม้า": "ไข่เยี่ยวม้า"
@@ -30,7 +30,8 @@ class Menus {
         const keys = Object.keys(obj).filter(key => !exclude.includes(key));
         const randomIndex = Math.floor(Math.random() * keys.length);
         const randomKey = keys[randomIndex];
-        return obj[randomKey];
+        const randomValue = obj[randomKey] ? obj[randomKey] : "";
+        return randomValue;
     }
 
     getRandProc() {
@@ -47,12 +48,11 @@ class Menus {
         // re-random proc
         const proc = this.getRandProc()
         this.meatListObj = {
-            "": "",
             "หมู": "หมู" + proc,
             "ไก่": "ไก่" + proc,
             "เนื้อ": "เนื้อ" + proc,
             "ปลา": "ปลา" + proc,
-            "กุ้ง": "กุ้ง" + proc,
+            "กุ้ง": "กุ้ง",
             "ทะเล": "ทะเล",
             "ปลาหมึก": "ปลาหมึก",
             "ปู": "ปู",
