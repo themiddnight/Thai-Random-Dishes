@@ -259,6 +259,7 @@ settingBtn.addEventListener("click", () => {
     settingBtn.classList.toggle("hidden");
 });
 
+// close setting menu
 function closeSettingMenu() {
     // if checkboxes in menuList class are not all unchecked, close setting menu.
     if (checktMenuSelection()) {
@@ -267,15 +268,16 @@ function closeSettingMenu() {
         settingBtn.classList.toggle("hidden");
         setTimeout(() => {
             settingMenu.classList.toggle("hidden");
+            clearAnimations([settingMenu]);
         }, 400);
     }
 };
 
-// close setting menu - button
+// by button
 const closeBtn = document.getElementById("closeSettingBtn");
 closeBtn.addEventListener("click", closeSettingMenu);
 
-// close setting menu - click anywhere except settingMenu
+// by click anywhere except settingMenu
 document.addEventListener("click", (e) => {
     if (!settingMenu.contains(e.target)
         && !settingBtn.contains(e.target)
