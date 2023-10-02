@@ -94,7 +94,7 @@ hr {
 
 .title-con {
     grid-row: 3;
-    background-color: #ffffff88;
+    background-color: #dddddd88;
     width: 330px;
     height: 140px;
     border-radius: 20px;
@@ -169,7 +169,7 @@ hr {
 .setting-container {
     /* display: none; */
     position: absolute;
-    background-color: #ffffff88;
+    background-color: #dddddd88;
     max-width: 400px;
     height: 80vh;
     width: 90%;
@@ -258,7 +258,7 @@ hr {
     height: 25px;
     width: 25px;
     border-radius: 5px;
-    background-color: #ffffff88;
+    background-color: #dddddd88;
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -424,22 +424,18 @@ hr {
 @keyframes slide-in {
     0% {
         transform: translate(-50%, 100%);
-        opacity: 0;
     }
     100% {
         transform: translate(-50%, -50%);
-        opacity: 1;
     }
 }
     
 @keyframes slide-out {
     0% {
         transform: translate(-50%, -50%);
-        opacity: 1;
     }
     100% {
         transform: translate(-50%, 100%);
-        opacity: 0;
     }
 }
 
@@ -503,8 +499,6 @@ hr {
         display: block;
         width: 400px;
         background-color: #ffffff33;
-        /* border-radius: 0; */
-        /* box-shadow: 0 0 0 0; */
         border: 1px solid #00000000;
     }
     .closeSetting-btn-con {

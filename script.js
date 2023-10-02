@@ -46,12 +46,11 @@ class Menus {
         let meat, veg, top;
 
         // re-random proc
-        const proc = this.getRandProc()
         this.meatListObj = {
-            "หมู": "หมู" + proc,
-            "ไก่": "ไก่" + proc,
-            "เนื้อ": "เนื้อ" + proc,
-            "ปลา": "ปลา" + proc,
+            "หมู": "หมู" + this.getRandProc(),
+            "ไก่": "ไก่" + this.getRandProc(),
+            "เนื้อ": "เนื้อ" + this.getRandProc(),
+            "ปลา": "ปลา" + this.getRandProc(),
             "กุ้ง": "กุ้ง",
             "ทะเล": "ทะเล",
             "ปลาหมึก": "ปลาหมึก",
@@ -60,7 +59,6 @@ class Menus {
             "ใส้กรอก": "ใส้กรอก",
             "ไข่เยี่ยวม้า": "ไข่เยี่ยวม้า"
         };
-        this.meatList = Object.keys(this.meatListObj);
         meat = this.randomObj(this.meatListObj, this.menuExc);
 
         do {
@@ -98,7 +96,7 @@ const menus = new Menus();
 const menuExc = localStorage.getItem("menuExc");
 // if the name is true, add the name to menuExc. 
 // if local storage is empty, set menuExc to empty array
-menuExc ? menus.menuExc = menuExc.split(",") : menus.menuExc = [];
+menus.menuExc = menuExc ? menuExc.split(",") : [];
 
 function generateHtmlList(list, listDivId) {
     let listDiv = document.getElementById(listDivId);
