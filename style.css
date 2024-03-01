@@ -171,7 +171,7 @@ hr {
     position: absolute;
     background-color: #dddddd88;
     max-width: 400px;
-    height: 80vh;
+    height: 90dvh;
     width: 90%;
     top: 50%;
     left: 50%;
@@ -212,7 +212,7 @@ hr {
 .setting-title {
     display: flex;
     align-items: baseline;
-    margin-block: 30px;
+    margin-block: 15px;
 }
 
 .setting-title h2 {
@@ -291,6 +291,21 @@ hr {
     transform: rotate(45deg);
 }
 
+.reset-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block: 20px;
+}
+
+.reset-btn {
+    margin-top: 10px;
+    color: brown;
+    font-size: large;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .shadow {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -331,55 +346,36 @@ hr {
 }
 
 @keyframes bounce {
-    0% {
-        transform: translate(-50%, 0px);
+    0%, 45%, 70%, 100% {
+        transform: translate(-50%, 0);
         animation-timing-function: linear;
     }
-    18% {
+    18%, 23% {
         transform: translate(-50%, -20px);
         animation-timing-function: ease-in-out;
-    }
-    23% {
-        transform: translate(-50%, -20px);
-        animation-timing-function: ease-in-out;
-    }
-    45% {
-        transform: translate(-50%, 0px);
-        animation-timing-function: linear;
     }
     58% {
         transform: translate(-50%, -8px);
         animation-timing-function: ease-in-out;
     }
-    70% {
-        transform: translate(-50%, 0);
-        animation-timing-function: linear;
-    }
     90% {
         transform: translate(-50%, -2px);
         animation-timing-function: ease-in-out;
     }
-    100% {
-        transform: translate(-50%, 0);
-        animation-timing-function: linear;
-    }
 }
 
 @keyframes roll {
-    0% {
+    0%, 100% {
         scale: 1;
         animation-timing-function: ease-out;
     }
     5% {
         scale: 0.9;
     }
-    100% {
-        scale: 1;
-    }
 }
 
 @keyframes pop {
-    0% {
+    0%, 100% {
         scale: 1;
     }
     40% {
@@ -389,35 +385,23 @@ hr {
     90% {
         scale: 0.95;
     }
-    100% {
-        scale: 1;
-    }
 }
 
 @keyframes squish {
-    0% {
+    0%, 100% {
         scale: 1;
     }
     40% {
         scale: 0.9;
     }
-    100% {
-        scale: 1;
-    }
 }
 
 @keyframes showAndHide {
-    0% {
+    0%, 100% {
         opacity: 0;
     }
-    10% {
+    10%, 90% {
         opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
     }
 }
 
