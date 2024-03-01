@@ -1,0 +1,20 @@
+{
+    "name": "\u0e2a\u0e38\u0e48\u0e21\u0e40\u0e21\u0e19\u0e39",
+    "short_name": "\u0e2a\u0e38\u0e48\u0e21\u0e40\u0e21\u0e19\u0e39",
+    "icons": [
+        {
+            "src": "/icons/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffa500",
+    "background_color": "#ffa500",
+    "start_url": "https://themiddnight.github.io/Thai-Random-Dishes/",
+    "display": "standalone"
+}
