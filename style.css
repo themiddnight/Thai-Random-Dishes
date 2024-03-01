@@ -39,7 +39,7 @@ hr {
 
 .random-container {
     display: grid;
-    grid-template-rows: 0% 30% 30% 15% 10% 10% 5%;
+    grid-template-rows: 5% 25% 30% 15% 10% 10% 5%;
     grid-template-columns: auto;
     padding: 0px;
     text-align: center;
@@ -71,6 +71,10 @@ hr {
 .logo-con {
     position: relative;
     grid-row: 2;
+}
+
+.logo {
+    z-index: 10;
 }
 
 .oval {
