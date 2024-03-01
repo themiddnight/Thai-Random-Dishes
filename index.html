@@ -30,7 +30,7 @@
         <h1 id="logo">🍛</h1>
       </div>
 
-      <div class="title-con center shadow" id="title-con" onclick="copyClipboard()">
+      <div class="title-con center shadow" id="title-con">
         <h1 id="title">วันนี้กินไรดี?</h1>
       </div>
 
@@ -39,7 +39,7 @@
       </div>
 
       <div class="rand-btn-con center">
-        <button class="shadow" id="getMenuBtn">สุ่มมา !</button>
+        <button class="shadow" id="randomBtn">สุ่มมา !</button>
       </div>
 
       <div class="subtitle-con center">
@@ -56,37 +56,37 @@
       </div>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('menuList')">รายการเมนู</h2>
+        <h2 id='menuSettingToggle'>รายการเมนู</h2>
       </div>
       <div class="menuList two-cols" id="menuList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('meatList')">รายการเนื้อ</h2>
+        <h2 id='meatSettingToggle'>รายการเนื้อ</h2>
       </div>
       <div class="meatList two-cols" id="meatList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('meatProcList')">รายการปรุงเนื้อ</h2>
+        <h2 id='meatProcSettingToggle'>รายการปรุงเนื้อ</h2>
       </div>
       <div class="meatProcList two-cols" id="meatProcList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('vegList')">รายการผัก</h2>
+        <h2 id='vegSettingToggle'>รายการผัก</h2>
       </div>
       <div class="vegList two-cols" id="vegList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('topList')">รายการท้อปปิ้ง</h2>
+        <h2 id='topSettingToggle'>รายการท้อปปิ้ง</h2>
       </div>
       <div class="topList two-cols" id="topList"></div>
     </div>
 
   </div>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
