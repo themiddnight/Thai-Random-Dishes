@@ -33,7 +33,7 @@ let randCount = 0;
 ///////////////////////// Functions /////////////////////////
 // fetch data from json file and save to localStorage
 async function fetchData() {
-  const menuDataFetch = await fetch("/data.json").then((res) => res.json());
+  const menuDataFetch = await fetch("https://themiddnight.github.io/Thai-Random-Dishes/data.json").then((res) => res.json());
   localStorage.setItem("menuData", JSON.stringify(menuDataFetch));
   return localStorage.getItem("menuData");
 }
