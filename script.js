@@ -1,4 +1,4 @@
-///////////////////////// Variables /////////////////////////
+///////////////////////// Variables //////////////////////////
 const logo = document.getElementById("logo");
 const titleCon = document.getElementById("title-con");
 const menuTitle = document.getElementById("title");
