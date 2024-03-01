@@ -2,17 +2,44 @@
 <html>
 
 <head>
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/site.webmanifest">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#ffa500">
+  <link rel="shortcut icon" href="/icons/favicon.ico">
+  <meta name="application-name" content="สุ่มเมนู">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-config" content="/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffa500">
+
+  <link rel="canonical" href="https://themiddnight.github.io/Thai-Random-Dishes/">
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height,initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta name="description" content="ไม่รู้จะกินอะไร ลองมาสุ่มกัน แล้วลุ้นกันว่าแม่ครัวจะว่ายังไง!">
+  <meta name="author" content="Pathompong Thitithan">
+  <meta name="keywords" content="สุ่ม, สุ่มเมนู, สุ่มอาหาร, สุ่มกิน, สุ่มกินอะไร, สุ่มอาหารไทย, สุ่มเมนูไทย, วันนี้กินไรดี, กินไรดี, กินอะไรดี, กินอะไร, กินไร, กินไรดี, กินอะไรดี, กินอะไรดีวันนี้">
+  
   <meta property="og:title" content="สุ่มเมนู">
   <meta property="og:description" content="ไม่รู้จะกินอะไร ลองมาสุ่มกัน แล้วลุ้นกันว่าแม่ครัวจะว่ายังไง!">
   <meta property="og:image" content="https://github.com/themiddnight/Thai-Random-Dishes/blob/main/image/thumbnail2.jpg?raw=true">
+  <meta property="og:url" content="https://themiddnight.github.io/Thai-Random-Dishes/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="สุ่มเมนู">
+  <meta property="og:locale" content="th_TH">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@themiddnight">
+  <meta name="twitter:creator" content="@themiddnight">
+  <meta name="twitter:title" content="สุ่มเมนู">
+  <meta name="twitter:description" content="ไม่รู้จะกินอะไร ลองมาสุ่มกัน แล้วลุ้นกันว่าแม่ครัวจะว่ายังไง!">
+  <meta name="twitter:image" content="https://github.com/themiddnight/Thai-Random-Dishes/blob/main/image/thumbnail2.jpg?raw=true">
+
+  <meta name="google-site-verification" content="sTt8iQe6fkfS_ryDhc7qBW2Lw26XDko_8XIzK0oHclM" />
+
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="image/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="image/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="image/icons/favicon-16x16.png">
-  <link rel="mask-icon" href="image/icons/safari-pinned-tab.svg" color="#ffaa00">
-  <meta name="msapplication-TileColor" content="#da532c">
+
   <title>สุ่มเมนู</title>
 </head>
 
@@ -22,15 +49,15 @@
     <!-- main container -->
     <div class="random-container">
       <div class="setting-btn-con">
-        <img src="image/note.svg" alt="" id="settingBtn">
+        <img src="image/note.svg" id="settingBtn" alt="Setting button">
       </div>
 
       <div class="logo-con center">
         <div class="oval"></div>
-        <h1 id="logo">🍛</h1>
+        <img src="image/dish-logo.png" width="150" class="logo" id="logo" alt="App logo">
       </div>
 
-      <div class="title-con center shadow" id="title-con" onclick="copyClipboard()">
+      <div class="title-con center shadow" id="title-con">
         <h1 id="title">วันนี้กินไรดี?</h1>
       </div>
 
@@ -39,7 +66,7 @@
       </div>
 
       <div class="rand-btn-con center">
-        <button class="shadow" id="getMenuBtn">สุ่มมา !</button>
+        <button class="shadow" id="randomBtn">สุ่มมา !</button>
       </div>
 
       <div class="subtitle-con center">
@@ -51,42 +78,53 @@
     <div class="setting-container shadow" id="setting-container">
       <div class="close-btn-panel">
         <div class="closeSetting-btn-con">
-          <img src="image/cross3.svg" alt="" id="closeSettingBtn">
+          <img src="image/cross3.svg" id="closeSettingBtn" alt="Close setting panel button">
         </div>
       </div>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('menuList')">รายการเมนู</h2>
+        <h2 id='menuSettingToggle'>รายการเมนู</h2>
       </div>
       <div class="menuList two-cols" id="menuList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('meatList')">รายการเนื้อ</h2>
+        <h2 id='meatSettingToggle'>รายการเนื้อ</h2>
       </div>
       <div class="meatList two-cols" id="meatList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('meatProcList')">รายการปรุงเนื้อ</h2>
+        <h2 id='meatProcSettingToggle'>รายการปรุงเนื้อ</h2>
       </div>
       <div class="meatProcList two-cols" id="meatProcList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('vegList')">รายการผัก</h2>
+        <h2 id='vegSettingToggle'>รายการผัก</h2>
       </div>
       <div class="vegList two-cols" id="vegList"></div>
       <hr>
 
       <div class="setting-title">
-        <h2 onclick="selectAll('topList')">รายการท้อปปิ้ง</h2>
+        <h2 id='topSettingToggle'>รายการท้อปปิ้ง</h2>
       </div>
       <div class="topList two-cols" id="topList"></div>
+      <hr>
+      <div class="reset-div">
+        <p class="reset-btn" id="resetBtn">รีเซ็ต</p>
+      </div>
+      <hr>
+      <footer>
+        <b>Created by: </b><span>Pathompong Thitithan</span><br>
+        <a href="https://themiddnight.github.io" target="_blank">Website</a> | 
+        <a href="https://github.com/themiddnight" target="_blank">Github</a> | 
+        <a href="https://github.com/themiddnight/Thai-Random-Dishes" target="_blank">Repository</a>
+      </footer>
     </div>
 
   </div>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
