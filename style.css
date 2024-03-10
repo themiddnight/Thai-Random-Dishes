@@ -40,11 +40,13 @@ footer {
     margin: 0 auto;
     height: 100dvh;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 .random-container {
     display: grid;
-    grid-template-rows: 7% 23% 30% 15% 10% 10% 5%;
+    grid-template-rows: 7% 23% 30% 5% 20% 10% 5%;
     grid-template-columns: auto;
     padding: 0px;
     text-align: center;
