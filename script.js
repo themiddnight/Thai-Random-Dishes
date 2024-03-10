@@ -1,3 +1,5 @@
+import { data } from './data.js'
+
 ///////////////////////// Variables //////////////////////////
 const logo = document.getElementById("logo");
 const titleCon = document.getElementById("title-con");
@@ -32,10 +34,8 @@ let randCount = 0;
 
 ///////////////////////// Functions /////////////////////////
 // fetch data from json file and save to localStorage
-async function fetchData() {
-  // /Thai-Random-Dishes/data.json
-  const menuDataFetch = await fetch("/Thai-Random-Dishes/data.json").then((res) => res.json());
-  localStorage.setItem("menuData", JSON.stringify(menuDataFetch));
+async function getData() {
+  localStorage.setItem("menuData", JSON.stringify(data));
   return localStorage.getItem("menuData");
 }
 
@@ -241,7 +241,7 @@ topSettingToggle.addEventListener("click", () =>
 // reset all settings
 resetBtn.addEventListener("click", async () => {
   if (confirm("คุณต้องการรีเซ็ตการตั้งค่าทั้งหมดใช่หรือไม่?")) {
-    menuDataLocal = await fetchData();
+    menuDataLocal = await getData();
     menuData = JSON.parse(menuDataLocal);
     location.reload();
   }
@@ -266,7 +266,7 @@ document.addEventListener("click", (e) => {
 // The app will only use modified localStorage data.
 // If no localStorage data, copy from app data then use it.
 if (!menuDataLocal) {
-  menuDataLocal = await fetchData();
+  menuDataLocal = await getData();
 }
 let menuData = JSON.parse(menuDataLocal);
 
